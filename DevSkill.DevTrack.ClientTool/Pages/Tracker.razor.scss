@@ -1,0 +1,100 @@
+﻿$screen-one-width: 400px;
+$screen-one-height: 150px;
+$frame-pad: 10px;
+
+.middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame-s2-wrapper {
+    @extend .middle;
+    width: $screen-one-width + $frame-pad !important;
+    height: $screen-one-height + $frame-pad !important;
+    background-color: transparent;
+
+    .frame-s2 {
+        @extend .middle;
+        width: $screen-one-width !important;
+        height: $screen-one-height !important;
+        background: white;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        overflow: hidden;
+        border-radius: 5px;
+        padding: 0;
+        position: relative;
+        padding: 25px 35px 25px 10px;
+        -webkit-user-select: none;
+        -webkit-app-region: drag;
+
+        .exit-btn, .min-btn {
+            position: absolute;
+            cursor: pointer;
+            z-index: 100;
+            font-size: 1.2rem;
+            -webkit-app-region: no-drag !important;
+        }
+
+        .exit-btn {
+            left: calc(100% - 30px);
+            top: 10px;
+        }
+
+        .min-btn {
+            left: calc(100% - 30px);
+            top: 35px;
+            color: lightgray;
+        }
+
+        .screen {
+            display: flex;
+            width: 100%;
+            background-color: transparent;
+            height: 100%;
+
+            .card {
+                width: 100%;
+                border: none;
+                -webkit-app-region: no-drag !important;
+
+                .inner-content {
+                    display: flex;
+                    align-items: stretch;
+                    height: 100%;
+
+                    .p-btn-holder {
+                        @extend .middle;
+                        width: 80px;
+
+                        .play-pause-btn {
+                            font-size: 3rem;
+                            outline: none;
+                            border: 0;
+                            background: none;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .track-info-holder {
+                        flex-grow: 1;
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        select {
+                            background-color: white;
+                            color: black;
+                            border: 1px solid silver;
+                            border-radius: 5px;
+                            outline: 0;
+                            padding: 5px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

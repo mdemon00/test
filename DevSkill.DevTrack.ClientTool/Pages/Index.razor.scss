@@ -1,0 +1,75 @@
+﻿$screen-one-width: 400px;
+$screen-one-height: 450px;
+$frame-pad: 10px;
+
+.middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame-s1-wrapper {
+    @extend .middle;
+    background: red;
+    width: $screen-one-width + $frame-pad !important;
+    height: $screen-one-height + $frame-pad !important;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+
+    .frame-s1 {
+        @extend .middle;
+        width: $screen-one-width !important;
+        height: $screen-one-height !important;
+        background: white;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        overflow: hidden;
+        border-radius: 5px;
+        padding: 0;
+        position: relative;
+
+        .exit-btn {
+            position: absolute;
+            left: calc(100% - 45px);
+            top: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 100;
+            -webkit-app-region: no-drag !important;
+        }
+
+        .screen {
+            display: flex;
+            width: 100%;
+            padding: 30px 45px;
+            background-color: transparent;
+
+            .card {
+                width: 100%;
+                border: none;
+                background-color: transparent;
+
+                .card-body {
+                    text-align: center;
+                    width: 100%;
+                    padding: 0;
+
+                    .logo-holder {
+                        img {
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+
+                    button{
+                        width: 100px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+form, button, input {
+    -webkit-app-region: no-drag !important;
+}

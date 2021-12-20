@@ -1,0 +1,43 @@
+﻿@page "/tracker"
+
+@using DevSkill.DevTrack.ClientTool.Helpers
+
+@implements IDisposable
+
+@inject IElectronWindowHelper _electronWindowHelper
+@inject IElectronTrayHelper _electronTrayHelper
+
+<div class="frame-s2-wrapper">
+    <div class="frame-s2">
+        <div class="exit-btn" @onclick="OnExitButtonClickAsync">
+            <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="min-btn" @onclick="OnMinimizeButtonClickAsync">
+            <i class="fas fa-minus-circle"></i>
+        </div>
+        <div class="screen">
+            <div class="card">
+                <div class="inner-content">
+                    <div class="p-btn-holder">
+                        <div @onclick="ToggleTrackingAsync" class="play-pause-btn text-@((_isTrackerOn ? "danger" : "success"))">
+                            <i class="far @((_isTrackerOn ? "fa-pause-circle" : "fa-play-circle"))"></i>
+                        </div>
+                    </div>
+                    <div class="track-info-holder">
+                        <div class="project-list-div w-100">
+                            <select @onchange="OnChangeAsync" disabled="@_isTrackerOn">
+                                @foreach (var p in ProjectModels)
+                                {
+                                    <option value="@p.Id">@p.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="timer-div">
+                            Today: @_secondsTracked.ToString()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
