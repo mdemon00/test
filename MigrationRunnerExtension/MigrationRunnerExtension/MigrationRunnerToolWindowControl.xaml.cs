@@ -9,6 +9,7 @@ using EnvDTE;
 using EnvDTE80;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Shell;
+using MigrationRunnerExtension.Services;
 
 namespace MigrationRunnerExtension
 {
@@ -25,26 +26,16 @@ namespace MigrationRunnerExtension
         {
             var dte = ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE2;
 
-            var test = typeof(DbContext);
+            var assemblyService = new AssemblyService();
+            var assemblies = assemblyService.GetAssemblies(dte.Solution.Projects);
 
-            Project project = dte.Solution.Projects.Item(1);
-            List<Assembly> list = new List<Assembly>();
+            var test = assemblies[4];
+            var x = test.GetReferencedAssemblies();
 
+            var y = Assembly.Load(x[9]);
 
-            string fullProjectPath = project.Properties.Item("FullPath").Value.ToString();
-            string outputDir = Path.Combine(fullProjectPath, project.ConfigurationManager.ActiveConfiguration.Properties.Item("OutputPath").Value.ToString());
-            string outputFileName = Path.Combine(outputDir, project.Properties.Item("OutputFileName").Value.ToString());
-            AssemblyName assemblyName = new AssemblyName(project.Properties.Item("AssemblyName").Value.ToString());
-            assemblyName.CodeBase = outputFileName;
-            try
-            {
-                Assembly projectAssembly = Assembly.Load(assemblyName);
-                list.Add(projectAssembly);
-            }
-            catch (Exception ex)
-            {
-                //TODO: some diag info (especially when the project is not built yet) could be very useful.
-            }
+            var project = dte.Solution.Projects;
+
 
             
             //foreach (var project in dte.Solution.Projects)
@@ -62,7 +53,7 @@ namespace MigrationRunnerExtension
 
 
             MessageBox.Show(
-                test.FullName,
+               "",
                 "MigrationRunnerToolWindow");
         }
     }
