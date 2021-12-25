@@ -63,6 +63,7 @@
     <Compile Include="Services\IProjectService.cs" />
     <Compile Include="Services\MigrationService.cs" />
     <Compile Include="Services\ProjectService.cs" />
+    <Compile Include="TypesHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">
